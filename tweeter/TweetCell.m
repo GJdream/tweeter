@@ -37,32 +37,51 @@
     // Configure the view for the selected state
 }
 
+-(float) sizeForCellWithText:(NSString *) text {
+    CGRect rect = [self rectForCellWithText:text];
+
+    return rect.size.height + 16;
+}
+
+-(CGRect) rectForCellWithText:(NSString *) text {
+    NSAttributedString *tweetAttrText = [[NSAttributedString alloc] initWithString:text];
+    
+    CGRect rect = [tweetAttrText boundingRectWithSize:CGSizeMake(self.tweetText.frame.size.width,
+                                                                 CGFLOAT_MAX)
+                                              options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                              context:nil];
+    //    CGSize s = [text sizeWithFont: self.tweetText.font
+    //                      constrainedToSize:CGSizeMake(self.tweetText.frame.size.width,     CGFLOAT_MAX)  // - 40 For cell padding
+    //                          lineBreakMode:NSLineBreakByWordWrapping];
+    return rect;
+}
+
+//-(NSAttributedString *) attrStringWithText:(NSString *) text {
+//    return [[NSAttributedString alloc] initWithString:text];
+//
+//}
+
 - (void)setTweet:(Tweet *)tweet{
-    //self.tweetText.text = tweet.text;
-    NSAttributedString *tweetAttrText = [[NSAttributedString alloc] initWithString:tweet.text];
-    CGRect rect = [tweetAttrText boundingRectWithSize:CGSizeMake(self.bounds.size.width-40,CGFLOAT_MAX)
-                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                           context:nil];
-    UITextView *tweetTextView = [[UITextView alloc] initWithFrame:rect];
-    [self.contentView addSubview:tweetTextView];
-    self.tweetText =tweetTextView;
+    CGRect rect = [self rectForCellWithText:tweet.text];
+    
+    //NSLog(@"Rect dimentions  %f , %f , %f , %f",rect.origin.x,rect.origin.y,rect.size.width,rect.size.height);
+    self.tweetText.text = tweet.text;
+    
+    self.tweetText.frame = CGRectMake(self.tweetText.frame.origin.x, self.tweetText.frame.origin.y, self.tweetText.frame.size.width, rect.size.height + 200 + self.tweetText.contentInset.bottom + self.tweetText.contentInset.top  );
+    
+    //self.tweetText =tweetTextView;
+    
  //   CGSize s = [tweet.text sizeWithFont:[UIFont systemFontOfSize:9]
  //                 constrainedToSize:CGSizeMake(self.bounds.size.width - 40,     CGFLOAT_MAX)  // - 40 For cell padding
  //                     lineBreakMode:NSLineBreakByWordWrapping];
-    self.userNameLabel.text = tweet.userName;
+    self.userNameLabel.text = [NSString stringWithFormat:@"@%@",tweet.screenName];
+
     // Here we use the new provided setImageWithURL: method to load the web image
     //[self.profilePic setImageWithURL:[NSURL URLWithString:tweet.userProfilePicUrl]
     //               placeholderImage:[UIImage imageNamed:@"twitter_placeholder.jpg"]];
     [self.profilePic setImageWithURL:[NSURL URLWithString:tweet.userProfilePicUrl]
                     placeholderImage:[UIImage imageNamed:@"twitter_placeholder.png"]];
 }
-/**
-+ (CGFloat *)cellContentHeight{
-    CGRect textFrame = self.tweetText.frame;
-    CGRect nameFrame = self.userNameLabel.frame;
-    
-    return (self.tweetText.frame.size.height + self.userNameLabel.frame.size.height + 10);
-}**/
 
 
 

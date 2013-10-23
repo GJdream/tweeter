@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6E147B7B-3FCB-4C03-9A57-BB164F3958C3</string>
+	<key>IDESourceControlProjectName</key>
+	<string>tweeter</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1D3749BE-A929-4565-8E6C-22E78628689D</key>
+		<string>https://github.com/imju/tweeter.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>tweeter.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1D3749BE-A929-4565-8E6C-22E78628689D</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/imju/tweeter.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1D3749BE-A929-4565-8E6C-22E78628689D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1D3749BE-A929-4565-8E6C-22E78628689D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>tweeter</string>
+		</dict>
+	</array>
+</dict>
+</plist>

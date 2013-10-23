@@ -31,6 +31,9 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,7 +45,7 @@
 #pragma mark - Private methods
 
 - (IBAction)onSignInButton:(id)sender {
-    [[TwitterClient instance] authorizeWithCallbackUrl:[NSURL URLWithString:@"cp-twitter://success"] success:^(AFOAuth1Token *accessToken, id responseObject) {
+    [[TwitterClient instance] authorizeWithCallbackUrl:[NSURL URLWithString:@"cp-tweeter://success"] success:^(AFOAuth1Token *accessToken, id responseObject) {
         [[TwitterClient instance] currentUserWithSuccess:^(AFHTTPRequestOperation *operation, id response) {
             NSLog(@"response: %@", response);
             [User setCurrentUser:[[User alloc] initWithDictionary:response]];

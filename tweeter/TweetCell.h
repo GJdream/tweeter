@@ -15,4 +15,6 @@
 
 //+ (CGFloat *)cellContentHeight;
 
+-(float) sizeForCellWithText:(NSString *) text;
+
 @end

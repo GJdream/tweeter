@@ -65,6 +65,38 @@ static NSString * const kAccessTokenKey = @"kAccessTokenKey";
     [self getPath:@"1.1/statuses/home_timeline.json" parameters:params success:success failure:failure];
 }
 
+#pragma mark - Post API
+
+- (void)postTweetWithText:(NSString *)tweetText success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure  {
+    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
+    if ( tweetText && tweetText.length < 140){
+        [params setObject:tweetText forKey:@"status"];
+    }
+    [self postPath:@"1.1/statuses/update.json" parameters:params success:success failure:failure];
+}
+
+#pragma mark - Reply API
+//reuse update api
+
+
+#pragma mark - Retweet API
+
+-(void)retweetWithId:(NSNumber *)tweetId  success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure  {
+    
+    NSString *api = [[@"1.1/statuses/retweet/" stringByAppendingString:[tweetId stringValue]] stringByAppendingString:@".json"];
+    
+    [self postPath:api parameters:nil success:success failure:failure];
+}
+
+#pragma mark - Favorite API
+
+-(void)favoriteWithId:(NSNumber *)tweetId success:(void (^)(AFHTTPRequestOperation *operation, id response))success failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure  {
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"id": [tweetId stringValue]}];
+    
+    [self postPath:@"1.1/favorites/create.json" parameters:params success:success failure:failure];
+}
+
 #pragma mark - Private methods
 
 - (void)setAccessToken:(AFOAuth1Token *)accessToken {
